@@ -1,0 +1,45 @@
+# Todo
+todo_create:
+    path : /todo/create
+    defaults: { _controller : MainBundle:Todo:create }
+todo_read:
+    path: /todo/view/{id}
+    defaults: { _controller: MainBundle:Todo:read }
+    requirements:
+        id: \d*
+todo_update:
+    path : /todo/update/{id}
+    defaults: { _controller: MainBundle:Todo:update }
+    requirements:
+        id: \d*
+todo_delete:
+    path: /todo/delete
+    defaults: { _controller: MainBundle:Todo:delete }
+todo_list:
+    path: /todos
+    defaults: { _controller: MainBundle:Todo:list }
+todo_check:
+    path:     /todo/check
+    defaults: { _controller: MainBundle:Todo:check }
+    methods: [post]
+
+# Category
+category_create:
+    path : /category/create
+    defaults: { _controller : MainBundle:Category:create }
+category_read:
+    path: /category/view/{id}
+    defaults: { _controller: MainBundle:Category:read }
+    requirements:
+        id: \d*
+category_update:
+    path : /category/update/{id}
+    defaults: { _controller: MainBundle:Category:update }
+    requirements:
+        id: \d*
+category_delete:
+    path: /category/delete
+    defaults: { _controller: MainBundle:Category:delete }
+category_list:
+    path: /categories
+    defaults: { _controller: MainBundle:Category:list }

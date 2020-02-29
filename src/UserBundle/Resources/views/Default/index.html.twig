@@ -1,0 +1,111 @@
+{% extends "base.html.twig" %}
+{% block title %}
+    Votre agence d'emploi leader sur l'intérim, CDD et CDI
+{% endblock %}
+{% block body %}
+    <article class="bg_cons">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center text-white my-5 head_light">
+                    <header class="my-4">
+                        <h1>
+                            Nos conseils pour réussir
+                        </h1>
+                    </header>
+                    <p>
+                        Vous avez besoin de conseils pour optimiser
+                        votre recherche d'emploi, réussir votre entretien...
+                    </p>
+                    <p>
+                        {{ app_name }} est la solution la plus facile
+                    </p>
+                </div>
+            </div>
+        </div>
+    </article>
+    <article class="my-5">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="card bloc">
+                        <div class="card-body">
+                            <div class="media">
+                                <img class="mr-3" src="{{ asset("etc/images/file.svg") }}" alt="Réussir son cv en image">
+                                <div class="media-body">
+                                    <h2 class="mt-0 fs-md fw_bold">Réussir son CV</h2>
+                                    On vous accompagne
+                                </div>
+                                <div class="media-footer">
+                                    <a href="{{ path("reussir_son_cv") }}" class="btn btn-outline-danger">
+                                        Voir plus<i class="icon ion-ios-arrow-thin-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card bloc">
+                        <div class="card-body">
+                           <div class="media">
+                                <img class="mr-3" src="{{ asset("etc/images/dis_cuss_.jpg") }}" alt="Réussir son entretien en image">
+                                <div class="media-body">
+                                    <h2 class="mt-0 fs-md fw_bold">Réussir son entretien</h2>
+                                    Avançons ensemble
+                                </div>
+                                <div class="media-footer">
+                                    <a href="{{ path("reussir_son_entretien") }}" class="btn btn-outline-danger">
+                                        Voir plus<i class="icon ion-ios-arrow-thin-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+
+                <div class="col-md-6">
+                    <div class="card bloc">
+                        <div class="card-body">
+                            <div class="media">
+                                <img class="mr-3" src="{{ asset("etc/images/sea_rch_.jpg") }}" alt="Réussir son cv en image">
+                                <div class="media-body">
+                                    <h2 class="mt-0 fs-md fw_bold">Optimiser sa recherche d'emploi</h2>
+                                    Bien chez les autres, mieux chez {{ app_name }}
+                                </div>
+                                <div class="media-footer">
+                                    <a href="{{ path("optimiser_sa_recherche_emploi") }}" class="btn btn-outline-danger">
+                                        Voir plus<i class="icon ion-ios-arrow-thin-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card bloc">
+                        <div class="card-body">
+                            <div class="media">
+                                <img class="mr-3" src="{{ asset("etc/images/wor_k_.jpg") }}" alt="Réussir son cv en image">
+                                <div class="media-body">
+                                    <h2 class="mt-0 fs-md fw_bold">Gérer son parcours professionnel</h2>
+                                    On vous accompagne
+                                </div>
+                                <div class="media-footer">
+                                    <a href="{{ path("gerer_son_parcours_professionnel") }}" class="btn btn-outline-danger">
+                                        Voir plus<i class="icon ion-ios-arrow-thin-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </article>
+{% endblock %}

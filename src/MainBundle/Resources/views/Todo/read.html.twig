@@ -1,0 +1,46 @@
+{% extends "templates/template.html.twig" %}
+{% block title %}
+    {{ entity.content }}
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">               
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="details">
+                            <div class="label">Content</div>
+                            <div class="value">{{ entity.content }}</div>
+                        </div>
+                        <div class="details">
+                            <div class="label">Due date</div>
+                            <div class="value">{{ entity.dueDate|date("m/d/Y") }}</div>
+                        </div>
+                        <div class="details">
+                            <div class="label">Status</div>
+                            <div class="value">
+                                {% if entity.isDone %}
+                                    Done.
+                                {% else %}
+                                    Not yet done.
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% if entity.category %}
+                        <div class="details">
+                            <div class="label">
+                                Category
+                            </div>
+                            <div class="value">
+                                <a href="{{ path("category_read",{'id': entity.category.id }) }}">
+                                    {{ entity.category.name }}
+                                </a>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

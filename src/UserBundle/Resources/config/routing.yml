@@ -1,0 +1,199 @@
+home:
+    path:     /conseils
+    defaults: { _controller: UserBundle:Default:index }
+
+connexion:
+    path : /connexion
+    defaults : { _controller : UserBundle:User:connexion }
+login:
+    path : /login
+    defaults : { _controller : UserBundle:User:login }
+
+logout:
+    path : /logout
+register:
+    path : /register
+    defaults : { _controller : UserBundle:User:register }
+password_reset_request:
+    path : /password-request
+    defaults : { _controller : UserBundle:User:passwordResetRequest }
+password_reset:
+    path : /password-reset/{token}
+    defaults : { _controller : UserBundle:User:passwordReset }
+account_activate:
+    path : /account-activate/{token}
+    defaults : { _controller : UserBundle:User:accountActivate }
+activate:
+    path : /activate
+    defaults : { _controller : UserBundle:User:activate }
+
+profile_profile:
+    path : /u/{slug}
+    defaults : { _controller : UserBundle:User:profile }
+
+profile_profile_edit:
+    path : /profile/{id}/edit
+    defaults : { _controller : UserBundle:User:profileEdit }
+    requirements:
+        id: \d*
+profile_subscriptions:
+    path : /subscriptions/{id}
+    defaults : { _controller : UserBundle:User:subscriptions }
+    requirements:
+        id: \d*
+
+profile_entreprises:
+    path : /profile/companies/{id}
+    defaults : { _controller : UserBundle:User:companies }
+    requirements:
+        id: \d*
+profile_offers:
+    path : /profile/offers/{id}
+    defaults : { _controller : UserBundle:User:offers }
+    requirements:
+        id: \d*
+profile_received_invitations:
+    path : /profile/invitations/{id}
+    defaults : { _controller : MainBundle:Invitation:invitationsReceived }
+    requirements:
+        id: \d*
+profile_created_invitations:
+    path : /profile/invitations-created/{id}
+    defaults : { _controller : MainBundle:Invitation:invitationsCreated }
+    requirements:
+        id: \d*
+profile_invitation_delete:
+    path : /profile/invitation_/delete
+    defaults : { _controller : MainBundle:Invitation:delete }
+profile_invitation_create:
+    path : /profile/_invitation_/create
+    defaults : { _controller : MainBundle:Invitation:create }
+
+profile_add_exp:
+    path : /profile/experiences/{id}
+    defaults : { _controller : UserBundle:User:addExperience }
+    methods : [POST]
+profile_del_exp:
+    path : /profile/experiences/{id}
+    defaults : { _controller : UserBundle:User:deleteExperience }
+    methods : [DELETE]
+profile_get_exp:
+    path : /profile/experiences/{id}
+    defaults : { _controller : UserBundle:User:getExperiences }
+    methods : [GET]
+
+profile_add_comp:
+    path : /profile/competences/{id}
+    defaults : { _controller : UserBundle:User:addCompetence }
+    methods : [POST]
+profile_del_comp:
+    path : /profile/competences/{id}
+    defaults : { _controller : UserBundle:User:deleteCompetence }
+    methods : [DELETE]
+profile_get_comp:
+    path : /profile/competences/{id}
+    defaults : { _controller : UserBundle:User:getCompetences }
+    methods : [GET]
+
+profile_add_formation:
+    path : /profile/formations/{id}
+    defaults : { _controller : UserBundle:User:addFormation }
+    methods : [POST]
+profile_del_formation:
+    path : /profile/formations/{id}
+    defaults : { _controller : UserBundle:User:deleteFormation }
+    methods : [DELETE]
+profile_get_formations:
+    path : /profile/formations/{id}
+    defaults : { _controller : UserBundle:User:getFormations }
+    methods : [GET]
+
+
+
+plan_du_site:
+    path : /plan-du-site
+    defaults : { _controller : UserBundle:Default:planDuSite }
+contact:
+    path : /contact
+    defaults : { _controller : UserBundle:Default:contact }
+droit_acces:
+    path : /droit-acces
+    defaults : { _controller : UserBundle:Default:droitAcces }
+mentions_legales:
+    path : /mentions-legales
+    defaults : { _controller : UserBundle:Default:mentionsLegales }
+politique_cookie:
+    path : /politique-de-cookies
+    defaults : { _controller : UserBundle:Default:politiqueCookies }
+politique_confidentialite:
+    path : /politique-de-confidentialité
+    defaults : { _controller : UserBundle:Default:politiqueConfidentialite }
+securite_hammeconnage:
+    path : /securite-et-hammeconnage
+    defaults : { _controller : UserBundle:Default:securiteHammeconnage }
+about:
+    path : /about
+    defaults : { _controller : UserBundle:Default:apropos }
+team:
+    path : /team
+    defaults : { _controller : UserBundle:Default:equipe }
+
+datacompetence_json_list:
+    path : /datacompetences/list/json
+    defaults : { _controller : UserBundle:DataCompetence:json }
+datacompetence_user:
+    path : /datacompetences/_user/{slug}
+    defaults : { _controller : UserBundle:DataCompetence:user }
+admin_datacompetence_create:
+    path : /admin/datacompetences/create
+    defaults: { _controller : UserBundle:DataCompetence:create }
+admin_datacompetence_edit:
+    path : /admin/datacompetences/edit/{id}
+    defaults: { _controller : UserBundle:DataCompetence:edit }
+admin_datacompetence_list:
+    path : /admin/datacompetences/list
+    defaults: { _controller : UserBundle:DataCompetence:list }
+admin_datacompetence_delete:
+    path : /admin/datacompetences/delete
+    defaults: { _controller : UserBundle:DataCompetence:delete }
+
+
+
+dataschoolformation_create:
+    path : /dsf/{slug}
+    defaults : { _controller : UserBundle:DataSchoolFormation:create }
+dataschool_json_list:
+    path : /dataschool/list/json
+    defaults : { _controller : UserBundle:DataSchool:json }
+dataformation_json_list:
+    path : /dataformation/list/json
+    defaults : { _controller : UserBundle:DataFormation:json }
+dataschoolformation_delete:
+    path : /dataschoolformation/delete
+    defaults : { _controller : UserBundle:DataSchoolFormation:delete }
+
+admin_dataformation_create:
+    path : /admin/dataformation/create
+    defaults : { _controller : UserBundle:DataFormation:create }
+admin_dataformation_edit:
+    path : /admin/dataformation/edit/{id}
+    defaults : { _controller : UserBundle:DataFormation:edit }
+admin_dataformation_list:
+    path : /admin/dataformation/list
+    defaults : { _controller : UserBundle:DataFormation:list }
+admin_dataformation_delete:
+    path : /admin/dataformation/delete
+    defaults : { _controller : UserBundle:DataFormation:delete }
+
+admin_dataschool_create:
+    path : /admin/dataschool/create
+    defaults : { _controller : UserBundle:DataSchool:create }
+admin_dataschool_edit:
+    path : /admin/dataschool/edit/{id}
+    defaults : { _controller : UserBundle:DataSchool:edit }
+admin_dataschool_list:
+    path : /admin/dataschool/list
+    defaults : { _controller : UserBundle:DataSchool:list }
+admin_dataschool_delete:
+    path : /admin/dataschool/delete
+    defaults : { _controller : UserBundle:DataSchool:delete }

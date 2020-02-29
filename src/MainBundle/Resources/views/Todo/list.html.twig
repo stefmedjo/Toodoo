@@ -1,0 +1,71 @@
+{% extends "templates/template.html.twig" %}
+{% block title %}
+    Todos
+{% endblock %}
+{% block body %}
+<div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
+
+    <!-- Then put toasts within -->
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="mr-auto">Toodoo</strong>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="toast-body">
+        Impossible to update this todo. An error occured during the request.
+      </div>
+    </div>
+  </div>
+
+
+<div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+
+                <div class="row">
+                    <div class="col-md-10 col-sm-10 text-left _title">Todos</div>
+                    <div class="col-md-2 col-sm-2 text-right">
+                        <a href="{{ path("todo_create") }}" class="btn btn-danger">Add</a>
+                    </div>
+                </div>
+                
+                <div class="row mt-2">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        {% if entities|length > 0 %}                            
+                            <div class="card">
+                                <ul class="list-group list-group-flush">
+                                    {% for e in entities %}
+                                        <li class="list-group-item">
+                                            <div class="row">
+                                                <div class="col-md-10 col-sm-10 text-left">
+                                                    <a href="{{ path("todo_read",{'id': e.id }) }}">
+                                                        {{ e.content }}
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-2 col-sm-2 text-right">                                                    
+                                                    {% if e.isDone == false %}
+                                                        <i todo-path="{{ path("todo_check") }}" todo-id="{{ e.id }}" style="cursor: pointer;" class="not-checked ion-ios-circle-outline">
+                                                        </i>
+                                                    {% else %}
+                                                        <i class="icon ion-ios-checkmark text-success"></i>
+                                                    {% endif %}  
+                                                    <img src="{{ asset("etc/loader/loader.gif") }}" class="hide">                                                  
+                                                </div>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>                             
+                        {% else %}
+                            <div class="text-center">
+                                No Todo yet created.
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "templates/template.html.twig" %}
+{% block title %}
+    Categories
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                
+                
+                <div class="item">
+                    <div>
+                        <a class="title" href="{{ path("category_read",{'id': entity.id }) }}">
+                            {{ entity.name }}
+                        </a>
+                    </div>
+                    <div>
+                        {% if entity.todos|length == 0 %}
+                            No todo in this category.
+                        {% else %}
+                            {{ entity.todos|length }}
+                        {% endif %}
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+{% endblock %}
