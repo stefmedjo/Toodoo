@@ -21,6 +21,10 @@
                                 {{ e.todos|length }}
                             {% endif %}
                         </div>
+                        <div>
+                            <a href="{{ path("category_edit",{'id': e.id }) }}">Edit</a>
+                            <a item-id="{{ e.id }}" href="#" class="delete">Delete</a>
+                        </div>
                     </div>
                 {% endfor %}
             </div>

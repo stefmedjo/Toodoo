@@ -54,6 +54,12 @@
                                                     <img src="{{ asset("etc/loader/loader.gif") }}" class="hide">                                                  
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                <div class="col-md-12">                                                    
+                                                    <a href="{{ path("todo_edit",{'id': e.id }) }}">Edit</a>
+                                                    <a item-id="{{ e.id }}" href="#" class="delete">Delete</a>
+                                                </div>
+                                            </div>
                                         </li>
                                     {% endfor %}
                                 </ul>

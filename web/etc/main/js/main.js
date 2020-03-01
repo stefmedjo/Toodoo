@@ -11,18 +11,12 @@ $(document).ready(function(){
         autoclose : true,
         startDate: moment().format("MM/DD/YYYY")
     }); 
-    $('.not-checoked').on('click', function(e){
+
+    $('.delete').on('click', function(e){
         e.preventDefault()
-        const p = $(this)
-        $.post($(this).attr("todo-path"),{
-            "id" : $(this).attr("todo-id")
-        },function(data,status){
-            console.log(status)
-            p.attr("name","checkmark-done-circle")
-            p.removeClass("not-checked")
-            $(this).addClass("text-success")
-        })
-    });
+        $('#modal-edit input[hidden]').attr("value",$(this).attr("item-id"))
+        $('#modal-edit').modal("show")
+    })
 
 
 
