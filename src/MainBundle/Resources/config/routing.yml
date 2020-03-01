@@ -1,4 +1,8 @@
 # Todo
+home:
+    path : /
+    defaults: { _controller : MainBundle:Todo:list }
+# Todo
 todo_create:
     path : /todo/create
     defaults: { _controller : MainBundle:Todo:create }

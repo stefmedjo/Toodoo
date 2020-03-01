@@ -15,6 +15,7 @@ class TodoController extends Controller{
         $form = $this->createForm(TodoType::class,$entity);
         $form->handleRequest($request);
         if($form->isValid() && $form->isSubmitted()){
+
             if($entity->getContent() == null){
                 $this->addFlash("error","You need to provide a content.");
             }elseif($entity->getDueDate() == null){
@@ -41,22 +42,29 @@ class TodoController extends Controller{
     }
 
     public function updateAction(Todo $entity,Request $request){
-        $form = $this->createForm(TodoType::class,$entity);
-        $form->handleRequest($request);
-        if($form->isValid() && $form->isSubmitted()){
-
-            $dueDate = \DateTime::createFromFormat("m/d/Y",$entity->getDueDate());
+        if($entity->getIsDone() == false){
+            $dueDate = $entity->getDueDate()->format('m/d/Y');
             $entity->setDueDate($dueDate);
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
-            return $this->redirectToRoute("todo_read",["id" => $entity->getId()]);
+            $form = $this->createForm(TodoType::class,$entity);
+            $form->handleRequest($request);
+            if($form->isValid() && $form->isSubmitted()){
+    
+                $dueDate = \DateTime::createFromFormat("m/d/Y",$entity->getDueDate());
+                $entity->setDueDate($dueDate);
+    
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($entity);
+                $em->flush();
+                return $this->redirectToRoute("todo_read",["id" => $entity->getId()]);
+            }
+            return $this->render("@Main/Todo/form.html.twig",[
+                "entity" => $entity,
+                "form" => $form->createView()
+            ]);
+        }else{
+            $this->addFlash('error','You cannot update this todo.');
+            return $this->redirectToRoute("todo_list");
         }
-        return $this->render("@Main/Todo/form.html.twig",[
-            "entity" => $entity,
-            "form" => $form->createView()
-        ]);
     }
 
     public function deleteAction(Request $request){

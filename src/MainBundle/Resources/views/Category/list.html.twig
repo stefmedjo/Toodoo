@@ -3,6 +3,38 @@
     Categories
 {% endblock %}
 {% block body %}
+
+    
+<div id="delete-modal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Toodoo</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"><i class="icon ion-md-close"></i></span>
+            </button>
+        </div>
+        <form 
+        action="#" 
+        method="POST">
+            <div class="modal-body">
+                <p>
+                    Do you really want to delete this item?
+                </p>
+                <input 
+                type="hidden" 
+                name="id"
+                />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-danger">Yes</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+
     <div class="container">
         <div class="row">
             <div class="col-md-4 offset-md-4">
@@ -22,8 +54,8 @@
                             {% endif %}
                         </div>
                         <div>
-                            <a href="{{ path("category_edit",{'id': e.id }) }}">Edit</a>
-                            <a item-id="{{ e.id }}" href="#" class="delete">Delete</a>
+                            <a href="{{ path("category_update",{'id': e.id }) }}">Edit</a>
+                            <a item-id="{{ e.id }}" href="{{ path("category_delete") }}" class="delete">Delete</a>
                         </div>
                     </div>
                 {% endfor %}

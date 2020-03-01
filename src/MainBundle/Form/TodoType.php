@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextType; 
 
 class TodoType extends AbstractType
 {
@@ -17,7 +17,14 @@ class TodoType extends AbstractType
     {
         $builder
         ->add('content',TextType::class,['required' => false,'attr' => ['class' => 'form-control']])
-        ->add('dueDate',TextType::class,['required' => false,'attr' => ['class' => 'form-control datepicker', 'readonly' => 'readonly']])
+        ->add('dueDate',TextType::class,[
+            'required' => false,
+            'attr' => 
+            [
+                'class' => 'form-control datetimepicker-input datepicker',
+                'data-toggle' => 'datetimepicker',
+                'data-target' => '#mainbundle_todo_dueDate'
+            ]])
         ->add('category',EntityType::class,[
             'class' => 'MainBundle:Category',
             'attr' => ['class' => 'form-control']

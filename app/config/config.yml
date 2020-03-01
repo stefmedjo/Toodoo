@@ -91,10 +91,15 @@ knp_paginator:
         pagination: 'KnpPaginatorBundle:Pagination:sliding.html.twig'    
         sortable: 'KnpPaginatorBundle:Pagination:sortable_link.html.twig' 
 assetic:
-    debug:          '%kernel.debug%'
-    use_controller: '%kernel.debug%'
+    debug:          %kernel.debug%
+    use_controller: false
+    # java: /usr/bin/java
     filters:
         cssrewrite: ~
+        yui_js:
+            jar: %kernel.root_dir%/Resources/java/yuicompressor.jar
+        yui_css:
+            jar: %kernel.root_dir%/Resources/java/yuicompressor.jar
 
 stof_doctrine_extensions:
     default_locale: en_UK

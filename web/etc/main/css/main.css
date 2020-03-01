@@ -1,3 +1,18 @@
+.actions{
+    color: #ccc;
+}
+.actions:hover{
+    color: #666;
+    text-decoration: none;
+}
+.actions:visited,.actions:focus,.actions:active{
+    color:#ccc;
+    text-decoration: none;
+}
+.df-color{
+    color: rgb(20, 23, 26);
+    font-size: 16px;
+}
 .details{
     margin-bottom: 1em;
 }
@@ -34,16 +49,6 @@
     color : #cc3333;
 }
 
-@font-face {
-    font-family: futura;
-    src: url(../../fonts/futura/futura_light_bt.ttf);
-}
-
-@font-face {
-    font-family: futura-bold;
-    src: url(../../fonts/futura/futura_medium_bt.ttf);
-}
-
 :root{
     --first-block-footer : #666;
     --second-block-footer : #666;
@@ -54,7 +59,7 @@
     --background_default : #fff;
 }
 body{
-    font-family: "futura",arial, sans-serif;
+    font-family: Roboto,arial, sans-serif;
     font-size: var(--default_font_size);
 }
 .article .title{

@@ -3,75 +3,116 @@
     Todos
 {% endblock %}
 {% block body %}
-<div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
 
-    <!-- Then put toasts within -->
-    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="toast-header">
-        <strong class="mr-auto">Toodoo</strong>
-        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="toast-body">
-        Impossible to update this todo. An error occured during the request.
-      </div>
+
+<div id="delete-modal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Toodoo</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"><i class="icon ion-md-close"></i></span>
+            </button>
+        </div>
+        <form 
+        action="#" 
+        method="POST">
+            <div class="modal-body">
+                <p>
+                    Do you really want to delete this item?
+                </p>
+                <input 
+                type="hidden" 
+                name="id"
+                />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-danger">Yes</button>
+            </div>
+        </form>
+        </div>
     </div>
-  </div>
+</div>
 
+<div id="request-modal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Toodoo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true"><i class="icon ion-md-close"></i></span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <p></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="container">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
 
-                <div class="row">
-                    <div class="col-md-10 col-sm-10 text-left _title">Todos</div>
-                    <div class="col-md-2 col-sm-2 text-right">
-                        <a href="{{ path("todo_create") }}" class="btn btn-danger">Add</a>
-                    </div>
+            <div class="row">
+                <div class="col-md-10 col-sm-10 text-left _title">Todos</div>
+                <div class="col-md-2 col-sm-2 text-right">
+                    <a href="{{ path("todo_create") }}" class="btn btn-danger">Add</a>
                 </div>
-                
-                <div class="row mt-2">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        {% if entities|length > 0 %}                            
-                            <div class="card">
-                                <ul class="list-group list-group-flush">
-                                    {% for e in entities %}
-                                        <li class="list-group-item">
-                                            <div class="row">
-                                                <div class="col-md-10 col-sm-10 text-left">
-                                                    <a href="{{ path("todo_read",{'id': e.id }) }}">
-                                                        {{ e.content }}
+            </div>
+            
+            <div class="row mt-2">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    {% if entities|length > 0 %}                            
+                        <div class="card">
+                            <ul class="list-group list-group-flush">
+                                {% for e in entities %}
+                                    <li class="list-group-item">
+                                        <div class="row">
+                                            <div class="col-md-10 col-sm-10 text-left">
+                                                <a class="df-color" href="{{ path("todo_read",{'id': e.id }) }}">
+                                                    {{ e.content }}
+                                                </a>
+                                            </div>
+                                            <div class="col-md-2 col-sm-2 text-right">                                                    
+                                                {% if e.isDone == false %}
+                                                    <i todo-path="{{ path("todo_check") }}" todo-id="{{ e.id }}" style="cursor: pointer;" class="not-checked ion-ios-circle-outline">
+                                                    </i>
+                                                {% else %}
+                                                    <i class="icon ion-ios-checkmark text-success"></i>
+                                                {% endif %}  
+                                                <img src="{{ asset("etc/loader/loader.gif") }}" class="hide">                                                  
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12"> 
+                                                {% if e.isDone == false %}                                                   
+                                                    <a href="{{ path("todo_update",{'id': e.id }) }}" class="actions">
+                                                        <i class="icon ion-android-create"></i>
                                                     </a>
-                                                </div>
-                                                <div class="col-md-2 col-sm-2 text-right">                                                    
-                                                    {% if e.isDone == false %}
-                                                        <i todo-path="{{ path("todo_check") }}" todo-id="{{ e.id }}" style="cursor: pointer;" class="not-checked ion-ios-circle-outline">
-                                                        </i>
-                                                    {% else %}
-                                                        <i class="icon ion-ios-checkmark text-success"></i>
-                                                    {% endif %}  
-                                                    <img src="{{ asset("etc/loader/loader.gif") }}" class="hide">                                                  
-                                                </div>
+                                                {% endif %}
+                                                <a item-id="{{ e.id }}" href="{{ path('todo_delete') }}" class="actions delete">
+                                                    <i class="icon ion-trash-a"></i>
+                                                </a>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-12">                                                    
-                                                    <a href="{{ path("todo_edit",{'id': e.id }) }}">Edit</a>
-                                                    <a item-id="{{ e.id }}" href="#" class="delete">Delete</a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>                             
-                        {% else %}
-                            <div class="text-center">
-                                No Todo yet created.
-                            </div>
-                        {% endif %}
-                    </div>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>                             
+                    {% else %}
+                        <div class="text-center">
+                            No Todo yet created.
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}

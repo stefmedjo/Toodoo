@@ -1,21 +1,15 @@
 $(document).ready(function(){
 
     $('.datepicker').datepicker({
-        format: 'mm/dd/yyyy',
-        todayBtn: true,
-        clearBtn: false,
-        language: "en",
-        calendarWeeks: true,
-        todayHighlight: true,
-        toggleActive: true,
-        autoclose : true,
-        startDate: moment().format("MM/DD/YYYY")
-    }); 
+        autoclose: true,
+        orientation: "bottom"
+    });
 
     $('.delete').on('click', function(e){
         e.preventDefault()
-        $('#modal-edit input[hidden]').attr("value",$(this).attr("item-id"))
-        $('#modal-edit').modal("show")
+        $('#delete-modal input[hidden]').attr("value",$(this).attr("item-id"))
+        $('#delete-modal form').attr('action',$(this).attr('href'));
+        $('#delete-modal').modal("show")
     })
 
 
@@ -48,10 +42,8 @@ $(document).ready(function(){
             error : function(data){
                 loader.hide()
                 _this.show()
-                $('.toast').toast({
-                    animation : true, autohide : false, delay : 3000
-                })
-                $('.toast').toast('show')
+                $('#request-modal p').html('An error occured during this request.')
+                $('#request-modal').modal('show')
             }
         })
 
